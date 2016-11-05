@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_update_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.josh.weatherapp.UpdateInfoActivity"
+    android:background="#150ef0">
+
+    <TextView
+        android:text="12C"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/maxValueTxtView"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:textColor="@android:color/background_light"
+        android:layout_alignBaseline="@+id/maxTempTxtView"
+        android:layout_alignBottom="@+id/maxTempTxtView"
+        android:layout_alignEnd="@+id/imageView" />
+
+
+    <TextView
+        android:text="10C"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/minValueTxtView"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:textColor="@android:color/background_light"
+        android:layout_below="@id/maxValueTxtView"
+        android:layout_alignBaseline="@+id/minTempTxtView"
+        android:layout_alignBottom="@+id/minTempTxtView"
+        android:layout_alignEnd="@+id/imageView" />
+
+    <TextView
+        android:text="Min Temp for Today:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/minTempTxtView"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:layout_below="@+id/maxTempTxtView"
+        android:layout_alignStart="@+id/maxTempTxtView"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:text="Refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="7dp"
+        android:id="@+id/refreshButton"
+        android:background="@android:color/darker_gray"
+        android:minHeight="33dp"
+        android:minWidth="68dip"
+        android:onClick="refresh" />
+
+    <TextView
+        android:text="Max Temp for Today:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/maxTempTxtView"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="118dp"
+        android:layout_below="@+id/imageView"
+        android:layout_toStartOf="@+id/maxValueTxtView"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:text="Ottawa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cityNameTxtView"
+        android:textColor="@android:color/background_light"
+        android:textSize="24sp"
+        android:textStyle="normal|bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <ImageView
+        app:srcCompat="@drawable/cloudsun2"
+        android:id="@+id/imageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_below="@+id/cityNameTxtView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="11-05-2016"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:id="@+id/dateTxtView"
+        android:layout_below="@+id/dayTxtView"
+        android:layout_alignStart="@+id/maxTempTxtView"
+        android:textColor="@android:color/background_light"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="Saturday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="18dp"
+        android:id="@+id/dayTxtView"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_alignStart="@+id/dateTxtView"
+        android:textColor="@android:color/background_light"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="11C"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:id="@+id/tempTxtView"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/background_light"
+        android:textSize="27sp"
+        android:textStyle="normal|bold" />
+
+
+</RelativeLayout>

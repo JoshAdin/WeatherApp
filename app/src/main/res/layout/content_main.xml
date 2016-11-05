@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.josh.weatherapp.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/city3"
+        android:scaleType="fitXY"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:minHeight="179dp" />
+
+    <Button
+        android:text="Get Update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/getUpdateButton"
+        android:layout_marginTop="128dp"
+        android:elevation="0dp"
+        android:layout_below="@+id/citySpinner"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorAccent"
+        android:textStyle="normal|bold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:onClick="getUpdate" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/citySpinner"
+        android:entries="@array/city_names"
+        android:layout_marginTop="112dp"
+        android:textSize="24sp"
+        android:background="@android:color/background_light"
+        android:minWidth="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/getUpdateButton"></Spinner>
+
+    <TextView
+        android:text="Pick a city to get weather update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:id="@+id/textView"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
+        android:textStyle="normal|bold"
+        android:layout_above="@+id/getUpdateButton"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
