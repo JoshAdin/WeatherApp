@@ -27,7 +27,9 @@ public class UpdateInfoActivity extends AppCompatActivity {
     /**
      * This method updates all textviews this activity (UpdateInfoActivity.this).
      * TODO:Update
-     * Current Temp, Date, Day, Max Temp, Min Temp and other weather features to be added
+     * Current Temp, Date, Day, Max Temp, Min Temp and other weather features to be added.
+     * Main method to be focused on while using the JSON.
+     * Get on more TextView names from the Design view of activity_update_info.xml
      */
     public void updateCurrentActivity() {
         //Update cityName here
