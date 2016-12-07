@@ -1,16 +1,36 @@
 package com.example.josh.weatherapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.josh.weatherapp.model.City;
+import com.example.josh.weatherapp.model.CityDAO;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.ibm.mobilefirstplatform.clientsdk.android.core.api.BMSClient;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,25 +39,21 @@ public class MainActivity extends AppCompatActivity {
      */
     private String city;
 
-    /**
-     * This method changes to the next UI activity to get weather update for the selected location
-     * when the GET UPDATE button is tapped. The variable from the spinner(drop down) are also passes to the
-     * next activity
-     *
-     * @param view
-     */
-    public void getUpdate(View view) {
+    private GoogleMap mMap;
 
-        Spinner cityFromSpinner = (Spinner) findViewById(R.id.citySpinner);
+    private String username;
+    private String password;
 
-        city = cityFromSpinner.getSelectedItem().toString();
+    private Marker currentMarker = null;
+    Spinner citySpinner;
+    LatLng currentLocation;
 
-        //quick toast for test if get update pulls a city from spinner
-        //Toast.makeText(getApplicationContext(),selectedCity.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
 
-        //pass city selected to the next UI activity and start activity
-        Intent intent = new Intent(getApplicationContext(), UpdateInfoActivity.class);
-        intent.putExtra("cityName", city);
+
+
+    public void displayMap(View view){
+
+        Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
 
     }
@@ -52,6 +68,35 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        // Core SDK must be initialized to interact with Bluemix mobile services
+        BMSClient.getInstance().initialize(getApplicationContext(), BMSClient.REGION_US_SOUTH);
+
+
+        citySpinner = (Spinner) findViewById(R.id.citySpinner);
+
+        ArrayAdapter<City>  spinnerArrayAdapter = new ArrayAdapter<City>(this, android.R.layout.simple_spinner_item, CityDAO.getCities());
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        citySpinner.setAdapter(spinnerArrayAdapter);
+
+        citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(final AdapterView<?> adapterView, View view, final int i, long l) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        weatherUpdate((City) adapterView.getSelectedItem());
+                        //Toast.makeText(MainActivity.this, "selected "+i, Toast.LENGTH_SHORT).show();
+                    }
+                }, 50);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
     }
 
@@ -75,5 +120,25 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    private void weatherUpdate(final City city){
+
+        if(city.getName().equals("Select")){
+            return;
+        }
+
+        currentLocation = new LatLng(Double.parseDouble(city.getLattitude()), Double.parseDouble(city.getLongitude()));
+
+
+        Intent currentIntent = new Intent(MainActivity.this, CurrentConditionsView.class);
+        currentIntent.putExtra("lattitude",city.getLattitude());
+        currentIntent.putExtra("longitude",city.getLongitude());
+        startActivity(currentIntent);
+
+
+
     }
 }

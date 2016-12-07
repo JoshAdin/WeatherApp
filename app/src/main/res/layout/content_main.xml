@@ -18,44 +18,52 @@
         android:layout_alignParentStart="true"
         android:minHeight="179dp" />
 
-    <Button
-        android:text="Get Update"
+    <TextView
+        android:text="Pick a city to get weather update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/getUpdateButton"
-        android:layout_marginTop="128dp"
-        android:elevation="0dp"
-        android:layout_below="@+id/citySpinner"
-        android:layout_centerHorizontal="true"
-        android:background="@color/colorAccent"
+        android:id="@+id/textView"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
         android:textStyle="normal|bold"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:onClick="getUpdate" />
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/citySpinner"
         android:entries="@array/city_names"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="32dp"
         android:textSize="24sp"
         android:background="@android:color/background_light"
         android:minWidth="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/getUpdateButton"></Spinner>
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"></Spinner>
 
     <TextView
-        android:text="Pick a city to get weather update"
+        android:text="Use map to get location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:id="@+id/textView"
+        android:id="@+id/textView2"
         android:textColor="@android:color/background_light"
         android:textSize="20sp"
         android:textStyle="normal|bold"
-        android:layout_above="@+id/getUpdateButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="83dp"
+        android:layout_below="@+id/citySpinner"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginStart="33dp" />
+
+    <Button
+        android:text="Show Map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:id="@+id/button2"
+        android:layout_below="@+id/textView2"
+        android:layout_alignStart="@+id/citySpinner"
+        android:onClick="displayMap" />
 
 
 </RelativeLayout>
